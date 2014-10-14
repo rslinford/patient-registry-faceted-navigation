@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Faceted Navigation - AHRQ Patient Registries</title>
+  <link rel="stylesheet" href="css/patnav.css">
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.24/jquery-ui.min.js"></script>
+  <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.24/themes/smoothness/jquery-ui.css">
+  <script src="js/patnav.js"></script>
+  <script src="js/core/Core.js"></script>
+  <script src="js/core/AbstractManager.js"></script>
+  <script src="js/managers/Manager.jquery.js"></script>
+  <script src="js/core/Parameter.js"></script>
+  <script src="js/core/ParameterStore.js"></script>
+  <script src="js/core/AbstractWidget.js"></script>
+  <script src="js/dwidgets/ResultWidget.js"></script>
+  <script src="js/widgets/jquery/PagerWidget.js"></script>
+  <script src="js/core/AbstractFacetWidget.js"></script>
+  <script src="js/dwidgets/TagcloudWidget.js"></script>
+  <script src="js/dwidgets/CurrentSearchWidget.9.js"></script>
+  <script src="js/core/AbstractTextWidget.js"></script>
+  <script src="js/dwidgets/AutocompleteWidget.js"></script>
+  <script src="js/dwidgets/CountryCodeWidget.js"></script>
+  <script src="js/dwidgets/CalendarWidget.js"></script>    
+</head>
+<body>
+  <div id="wrap">
+    <div id="header">
+      <h1>Registry Discovery</h1>
+      <h2>Patient Registry Navigation</h2>
+    </div>
+
+    <div class="right">
+      <div id="result">
+        <div id="navigation">
+          <ul id="pager"></ul>
+          <div id="pager-header"></div>
+        </div>
+        <div id="docs"></div>
+      </div>
+    </div>
+
+    <div class="left">
+      <h2>Current Selection</h2>
+      <ul id="selection"></ul>
+
+      <h2>Search</h2>
+      <span id="search_help">(press ESC to close suggestions)</span>
+      <ul id="search">
+        <input type="text" id="query" name="query" autocomplete="off">
+      </ul>
+        
+      <!-- "Top Topics" field "topic" to "omfConditionDisplayLabel" -->
+      <h2>Condition of Interest</h2>
+      <div class="tagcloud" id="omfConditionDisplayLabel"></div>
+
+      <!-- "Top Organisations" field "organisations" to "contactOrgTypeAhead" -->
+      <h2>Organization</h2>
+      <div class="tagcloud" id="contactOrgTypeAhead"></div>
+
+      <!-- "Top Exchanges" field "exchanges" to "reasonDesc" -->
+      <h2>Reason for Being Contacted</h2>
+      <div class="tagcloud" id="reasonDesc"></div>
+
+      <!-- "By Country" field "exchanges" to "regLocation" -->
+      <h2>Geograph</h2>
+      <div id="countries"></div>
+      <div id="preview"></div>
+
+      <!-- "By Date" field "date" to "dateEntry" -->
+      <h2>First Recieved</h2>
+      <div id="calendar"></div>
+
+      <div class="clear"></div>
+    </div>
+    <div class="clear"></div>
+  </div>
+</body>
+</html>

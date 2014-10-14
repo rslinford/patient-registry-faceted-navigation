@@ -1,0 +1,122 @@
+# My Notes
+
+# Production schema query on freetext 'cancer' parsed
+https://patientregistry.ahrq.gov/solr/select?
+facet=true
+fl=idRopr,regTitle,clssfctnDesc,othClssfctn,purposeDesc,othPurpose,dateUpdate,dateEntry,contactOrg,Reg,regLocation,idNct,omfConditionDisplayLabel,othCondition,omfCategoryDisplayLabel,othCategory,progAvailable,interestedContact,othContact,reasonDesc
+facet.field=dateEntry
+facet.field=dateUpdate
+facet.field=Reg
+facet.field=Cls
+facet.field=Pur
+facet.field=interestedContact
+facet.field=RC
+facet.field=Cd
+facet.field=Ct
+facet.field=progAvailable
+facet.field=archived
+facet.limit=30
+facet.mincount=1
+facet.date.start=1800-02-26T00.00.00.000Z/DAY
+facet.date.end=2412-10-20T00.00.00.000Z/DAY+1DAY
+facet.date.gap=+1DAY
+rows=10
+json.nl=map
+q=(freeText.(alzheimer) meshText.((alzheimer) OR ("alzheimer")))
+fq=Pur.100
+fq=archived.No
+fq=progAvailable.no
+fq=Reg.3
+fq=RC.100
+fq=Cd.1400
+fq=Cls.100
+fq=Ct.900
+fq=interestedContact.yes
+wt=json
+
+======= Test Mapping ========
+facet.field=topics   -> omfConditionDisplayLabel
+facet.field=organisations -> contactOrgTypeAhead
+facet.field=exchanges  -> reasonDesc
+facet.field=countryCodes -> regLocation
+
+facet.date=date -> dateEntry
+
+=== Test query mapped ===
+facet=true
+q=*:*
+facet.field=omfConditionDisplayLabel
+facet.field=contactOrgTypeAhead
+facet.field=reasonDesc
+facet.field=regLocation
+facet.limit=20
+facet.mincount=1
+f.omfConditionDisplayLabel.facet.limit=50
+f.regLocation.facet.limit=-1
+facet.date=dateEntry
+facet.date.start=1800-02-26T00:00:00.000Z/DAY 
+facet.date.end=  2412-10-20T00:00:00.000Z/DAY+1DAY
+facet.date.gap=+1DAY
+json.nl=map
+wt=json
+json.wrf=jQuery17209803773113900038_1413213192411
+_=1413213193229
+
+Translated request which returned a truck load of data:
+https://patientregistry.ahrq.gov/solr/select?facet=true&q=*%3A*&facet.field=omfConditionDisplayLabel&facet.field=contactOrgTypeAhead&facet.field=reasonDesc&facet.field=regLocation&facet.limit=20&facet.mincount=1&f.omfConditionDisplayLabel.facet.limit=50&f.regLocation.facet.limit=-1&facet.date=dateEntry&facet.date.start=1800-02-26T00%3A00%3A00.000Z%2FDAY&facet.date.end=2412-10-20T00%3A00%3A00.000Z%2FDAY%2B1DAY&facet.date.gap=%2B1DAY&json.nl=map&wt=json&json.wrf=jQuery17208627162768698272_1413220817995&_=1413220818771
+
+
+
+
+
+
+======
+
+# Example shcema query:
+https://patientregistry.ahrq.gov/solr/select?facet=true&q=*%3A*&facet.field=topics&facet.field=organisations&facet.field=exchanges&facet.field=countryCodes&facet.limit=20&facet.mincount=1&f.topics.facet.limit=50&f.countryCodes.facet.limit=-1&facet.date=date&facet.date.start=1987-02-26T00%3A00%3A00.000Z%2FDAY&facet.date.end=1987-10-20T00%3A00%3A00.000Z%2FDAY%2B1DAY&facet.date.gap=%2B1DAY&json.nl=map&wt=json&json.wrf=jQuery17209803773113900038_1413213192411&_=1413213193229
+# Parsed
+facet=true
+q=*:*
+facet.field=topics   -> omfConditionDisplayLabel
+facet.field=organisations -> contactOrgTypeAhead
+facet.field=exchanges  -> reasonDesc
+facet.field=countryCodes -> regLocation
+facet.limit=20
+facet.mincount=1
+f.topics.facet.limit=50
+f.countryCodes.facet.limit=-1
+facet.date=date
+facet.date.start=1987-02-26T00%3A00%3A00.000Z%2FDAY
+facet.date.end=1987-10-20T00%3A00%3A00.000Z%2FDAY%2B1DAY
+facet.date.gap=%2B1DAY
+json.nl=map
+wt=json
+json.wrf=jQuery17209803773113900038_1413213192411
+_=1413213193229
+
+
+
+#
+# command prompt set stuff
+
+# created structure by hand. TODO: setup SSH to SCP file over
+cd workspace/patnav/
+mkdir js/core
+mkdir js/dwidgets
+mkdir js/managers
+mkdir js/widgets
+mkdir js/widgets/jquery
+
+# Mini test server. Install:
+npm install http-server -g
+# Start test server
+cd ~/workspace/patnav/
+http-server -p 3000
+
+# Setup jitsu connection
+npm -g install jitsu
+jitsu signup
+jitsu deploy
+
+
+
