@@ -1,4 +1,4 @@
-# My Notes
+# My Notes - paste bin
 
 # Production schema query on freetext 'cancer' parsed
 https://patientregistry.ahrq.gov/solr/select?
